@@ -1,0 +1,34 @@
+Note: ~~~ don't miss point 4 ~~~
+1. to create user
+    -- Drop user first if they exist
+    DROP USER if exists 'springstudent'@'%' ;
+
+    -- Now create user with prop privileges
+    CREATE USER 'springstudent'@'%' IDENTIFIED BY 'springstudent';
+                 ^^^ username                      ^^^ password
+
+    GRANT ALL PRIVILEGES ON * . * TO 'springstudent'@'%';
+
+2. student-tracker.sql
+    CREATE DATABASE  IF NOT EXISTS `student_tracker`;
+    USE `student_tracker`;
+
+    --
+    -- Table structure for table `student`
+    --
+
+    DROP TABLE IF EXISTS `student`;
+
+    CREATE TABLE `student` (
+      `id` int NOT NULL AUTO_INCREMENT,
+      `first_name`varchar(45) DEFAULT NULL,
+      `last_name` varchar(45) DEFAULT NULL,
+      `email` varchar(45) DEFAULT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+3. Important steps:
+    //we open sql workbench, execute 1st sql command to create username and password (create-user.sql)
+    //then we configure server with those newly created credentials
+    //then we execute 2nd sql command (student-tracker). In schemas section, we see student_tracker now.
+

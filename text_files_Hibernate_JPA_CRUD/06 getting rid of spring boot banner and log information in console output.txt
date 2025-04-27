@@ -1,0 +1,8 @@
+1.  to get rid of SPRING banner on running application, we can turn it
+    off in application.properties.
+        spring.main.banner-mode=off
+
+2.  to get rid of entire log information of the program ( to get
+    our custom output and exceptions, errors etc. only )
+        logging.level.root=warn
+

@@ -1,0 +1,12 @@
+1. Create @Bean, of return type CommandLineRunner.
+    CommandLineRunner is from Spring Boot Framework.
+    Executed after Spring beans have been loaded.
+
+        @Bean
+    	public CommandLineRunner commandLineRunner(){
+    		return runner -> {
+    			System.out.println("Hello!");
+    		};
+
+    		//here we used lambda expression
+
