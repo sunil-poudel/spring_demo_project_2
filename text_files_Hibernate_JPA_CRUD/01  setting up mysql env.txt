@@ -1,0 +1,2 @@
+1. Download and install (or via terminal) MySQL server and
+MySQL Workbench.

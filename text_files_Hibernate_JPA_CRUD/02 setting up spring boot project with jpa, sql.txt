@@ -1,0 +1,7 @@
+1. start.spring.io
+
+2. add dependencies:
+    -> spring data jpa
+    -> mysql driver
+
+3. open the project in IDE and let syncs go on if needed.
