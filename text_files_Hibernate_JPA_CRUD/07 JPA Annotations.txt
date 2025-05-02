@@ -1,0 +1,62 @@
+1. By default, Hibernate is default JPA implementation in spring boot.
+
+2. Entity class, at least should have:
+    i. Annotated with @Entity.
+    ii. Public or protected no argumented constructor.
+    iii. We can have other constructors extra, but should be public or protected.
+
+    --> The @Entity annotation is used to mark a Java class as a JPA
+    entity, which means it represents a table in a relational database.
+
+    🔹 Purpose of @Entity
+        ->It tells the JPA provider (like Hibernate) to map the class to a database table.
+
+        ->Each instance of the class corresponds to a row in that table.
+
+3. Steps in JPA:
+    i. Map class to database table.
+    ii. Map fields to database columns.
+
+4. How?
+@Entity
+@Table(name="student") //mapping class to database table
+public class Student{
+    @Id
+    @Column(name="id")  //mapping field to database table
+    private int id;
+
+    @Column(name="first_name")
+    private String firstName;
+
+    .....
+}
+
+given that:
+Java class                  Database Table
+~~~~~~~~~~                  ~~~~~~~~~~~~~~
+    Student     ---->        student
+   id: int      ---->       id INT
+   firstName: String  --->  first_name VARCHAR(45)
+   lastName: String   --->  last_name VARCHAR(45)
+   email: String      --->  email VARCHAR(45)
+
+5. @Column and @Table are optional but recommended, as else
+column name and table name will be same as field and class name.
+
+6. Primary key uniquely identifies each rows in table.
+It's unique, can't contain NULL values.
+
+7. Auto increment
+    id int NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(45) DEFAULT NULL,
+    last_name VARCHAR(45) DEFAULT NULL,
+    email VARCHAR(45) DEFAULT NULL,
+    PRIMARY KEY(id)
+
+for this,
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+     //meaning this id will be generated and managed by the database,
+      //we don't need to keep track of it.
+    @Column(name="id")
+    private int id;
