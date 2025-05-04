@@ -1,0 +1,20 @@
+1. concept all same as for single object, but I will create method called createMultipleStudents as below:
+
+    public void createMultipleStudents(StudentDAO studentDAO){
+        //creating student objects
+        Student std1 = new Student("shyam", "poudel", "spd@gmail.com");
+        Student std2 = new Student("ram", "adhikari", "radk@gmail.com");
+        Student std3 = new Student("sita", "tiwari", "sta@gmail.com");
+
+        //saving students
+        studentDAO.save(std1);
+        studentDAO.save(std2);
+        studentDAO.save(std3);
+
+    }
+
+2. inside CommandLineRunner bean,
+    return runner -> {
+        createMultipleStudents(studentDAO);
+    }
+

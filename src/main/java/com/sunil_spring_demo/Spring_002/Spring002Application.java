@@ -17,7 +17,8 @@ public class Spring002Application {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
-			createStudent(studentDAO);
+//			createStudent(studentDAO);
+			createMultipleStudents(studentDAO);
 		};
 	}
 
@@ -32,8 +33,17 @@ public class Spring002Application {
 
 		//display id
 		System.out.println("Saved successfully! Generated id: "+student.getId());
+	}
 
+	public void createMultipleStudents(StudentDAO studentDAO){
+		//creating student objects
+		Student std1 = new Student("shyam", "poudel", "spd@gmail.com");
+		Student std2 = new Student("ram", "adhikari", "radk@gmail.com");
+		Student std3 = new Student("sita", "tiwari", "sta@gmail.com");
 
-
+		//saving students
+		studentDAO.save(std1);
+		studentDAO.save(std2);
+		studentDAO.save(std3);
 	}
 }
