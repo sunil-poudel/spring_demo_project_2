@@ -1,0 +1,75 @@
+1. Our app will have features: --CRUD--
+    i. create new student
+    ii. read a student
+    iii. update a student
+    iv. delete a student
+
+2. DAO ---?---> Data Access Object
+
+3. Student DAO
+    i. define DAO interface.
+    ii. define DAO implementation
+        -> inject entity manager.
+    iii. update the main app.
+
+4. Working:
+    i. define DAO interface
+        public interface StudentDAO{
+            void save(Student theStudent);
+        }
+
+    ii. define DAO implementation
+        Note: Spring @Repository
+            -> Specialized annotation for repositories.
+            -> Supports component scanning.
+            -> Translates JDBC related expressions. (checked to unchecked)
+
+        @Repository
+        public class StudentDAOImpl implements StudentDAO{
+            private EntityManager entitymanager;
+
+            @Autowired
+            public StudentDAOImpl(EntityManager theEntityManager){
+                entityManager = theEntityManager;
+            }
+
+            @Override
+            public void save(Student theStudent){
+                entityManager.persist(theStudent);
+            }
+        }
+
+        Note: Spring @Transactional
+            -> Automatically begins and ends the transaction for JPA code.
+            -> No need to explicitly do that work in code.
+
+            so updated:
+               @Override
+               @Transactional
+               public void save(Student theStudent){
+                   entityManager.persist(theStudent);
+               }
+
+    iii. update the main app
+
+        @Bean
+        public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
+            return runner -> {
+                createStudent(studentDAO);
+            }
+        }
+
+        public void createStudent(StudentDAO studentDAO){
+            //create student object
+            System.out.println("creating student object...");
+            Student student = new Student("Sunil", "Poudel", "suneelpdl90@gmail.com");
+
+            //save student object
+            System.out.println("saving student object...");
+            studentDAO.save(student);
+
+            //display id of saved student
+            System.out.println("Student saved! Generated id: "+student.getId());
+
+        }
+

@@ -1,11 +1,14 @@
 1. We do like this, refer to 07 JPA Annotations.txt for concept
  understanding.
+ Note: don't forget     @GeneratedValue(strategy = GenerationType.IDENTITY)
+ as of line 11
 
 @Entity
 @Table(name="student")
 public class Student {
     //define fields
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
