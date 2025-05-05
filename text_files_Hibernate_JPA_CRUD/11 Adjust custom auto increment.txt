@@ -1,0 +1,11 @@
+1. In sql workbench, in new query, type below code and execute it.
+        ALTER TABLE student_tracker.student AUTO_INCREMENT=1000
+        -- then the auto increment will start from 1000
+
+    --> then in our database, the upcoming rows will update from id 1000.
+
+2. To reset data and start auto increment from 1, type and execute below-given code.
+        TRUNCATE student_tracker.student
+        -- then the data resets, auto-increment sets to begin from 1
+
+
