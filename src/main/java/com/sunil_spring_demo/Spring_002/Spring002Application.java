@@ -18,7 +18,10 @@ public class Spring002Application {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
 //			createStudent(studentDAO);
-			createMultipleStudents(studentDAO);
+//			createMultipleStudents(studentDAO);
+			readStudent(studentDAO, 1);
+			readStudent(studentDAO, 2);
+			readStudent(studentDAO, 3);
 		};
 	}
 
@@ -45,5 +48,10 @@ public class Spring002Application {
 		studentDAO.save(std1);
 		studentDAO.save(std2);
 		studentDAO.save(std3);
+	}
+
+	public void readStudent(StudentDAO studentDAO, int id){
+		Student student = studentDAO.findById(id);
+		System.out.println(student);
 	}
 }

@@ -1,0 +1,32 @@
+1. inside StudentDAO interface, add new method.
+    Student findById(int id);
+
+2. inside StudentDAO implementation, implement that new method.
+        @Override
+        //no transactional annotation because we are just reading the data
+        public Student findById(int id) {
+            Student student = entityManager.find(Student.class, id);
+            //                                   ^^entity class  ^^primary key
+            //if not found, entityManager.find(...) returns null
+            return student;
+        }
+
+3. inside main application's command line runner,
+            readStudent(studentDAO, 1);
+			readStudent(studentDAO, 2);
+			readStudent(studentDAO, 3);
+			//we can implement any way we want
+		};
+
+    -> where, readStudent(...) is:
+        public void readStudent(StudentDAO studentDAO, int id){
+    		Student student = studentDAO.findById(id);
+    		System.out.println(student);
+    	}
+
+    //we can implement in any way we want, but understand the gist.
+
+4. output of above steps 1, 2, 3 will be:
+    Student{id=1, firstName='shyam', lastName='poudel', email='spd@gmail.com'}
+    Student{id=2, firstName='ram', lastName='adhikari', email='radk@gmail.com'}
+    Student{id=3, firstName='sita', lastName='tiwari', email='sta@gmail.com'}

@@ -20,4 +20,13 @@ public class StudentDAOImpl implements StudentDAO{
     public void save(Student student) {
         entityManager.persist(student);
     }
+
+    @Override
+    //no transactional annotation because we are just reading the data
+    public Student findById(int id) {
+        Student student = entityManager.find(Student.class, id);
+        //                                   ^^entity class  ^^primary key
+        //if not found, entityManager.find returns null
+        return student;
+    }
 }

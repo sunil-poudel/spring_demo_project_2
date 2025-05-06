@@ -4,4 +4,6 @@ import com.sunil_spring_demo.Spring_002.entity.Student;
 
 public interface StudentDAO {
     void save(Student student);
+
+    Student findById(int id);
 }
