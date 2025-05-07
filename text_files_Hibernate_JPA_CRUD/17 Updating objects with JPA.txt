@@ -1,0 +1,27 @@
+1. add method to interface
+    void update(Student student);
+
+2. implement it in implementation class
+    //note: i forgot transactional annotation in the beginning so
+    //didn't update in the actual database, don't repeat that mistake again.
+    @Override
+    @Transactional //here it's needed since we are updating database.
+    public void update(Student student, int id){
+        entityManager.merge(student); //tells to update entity
+    }
+
+3. update the main app.
+    update(studentDAO);
+    where,
+
+    public void update(studentDAO, id){
+        //get student to update
+        Student student = studentDAO.findById(id);
+
+        //update it
+        student.setFirstName("Sushmita");
+        student.setEmail("suneelpdl90@gmail.com");
+
+        //display message
+        System.out.println("updated: \n" + student);
+    }

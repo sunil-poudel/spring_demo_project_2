@@ -28,9 +28,11 @@ public class Spring002Application {
 			//call to display all students
 //			queryStudents(studentDAO);
 
-			findByLastName(studentDAO);
+//			findByLastName(studentDAO);
 
+//			updateStudent(studentDAO, 3);
 
+			updateAllStudents(studentDAO);
 		};
 	}
 
@@ -39,7 +41,6 @@ public class Spring002Application {
 		System.out.println("Creating student object...");
 		Student student = new Student("Rishiram", "Poudel", "rshrmpdl@gmail.com");
 
-		//save
 		System.out.println("Saving student...");
 		studentDAO.save(student);
 
@@ -76,6 +77,32 @@ public class Spring002Application {
 		for(Student student:studentsList){
 			System.out.println(student);
 		}
+	}
+
+	public void updateStudent(StudentDAO studentDAO, int id){
+		//get student
+		Student student = studentDAO.findById(id);
+
+		//update student
+		student.setFirstName("Hello");
+		student.setLastName("World");
+		student.setEmail("hlwd@gmail.com");
+
+		studentDAO.update(student);
+
+		//display message
+		System.out.println("Updated: \n"+student);
+
+	}
+
+	public void updateAllStudents(StudentDAO studentDAO){
+		System.out.println("updating: ");
+
+		int n = studentDAO.updateAll();
+
+		System.out.println("Updated successfully! "+n+" row(s)!!");
+
+		queryStudents(studentDAO);
 	}
 
 

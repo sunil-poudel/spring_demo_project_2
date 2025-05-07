@@ -16,4 +16,10 @@ public interface StudentDAO {
 
     //find by last name
     List<Student> findByLastName(String lastName);
+
+    //updating app
+    void update(Student student);
+
+    //updating entire table (entity)
+    int updateAll();
 }
