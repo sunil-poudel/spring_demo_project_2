@@ -26,7 +26,10 @@ public class Spring002Application {
 //			readStudent(studentDAO, 3);
 
 			//call to display all students
-			queryStudents(studentDAO);
+//			queryStudents(studentDAO);
+
+			findByLastName(studentDAO);
+
 
 		};
 	}
@@ -67,5 +70,13 @@ public class Spring002Application {
 			System.out.println(student);
 		}
 	}
+
+	public void findByLastName(StudentDAO studentDAO){
+		List<Student> studentsList = studentDAO.findByLastName("Adhikari");
+		for(Student student:studentsList){
+			System.out.println(student);
+		}
+	}
+
 
 }

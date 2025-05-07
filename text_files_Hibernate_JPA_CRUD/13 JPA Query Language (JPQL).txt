@@ -36,4 +36,36 @@
     -> This matches emails like sunil....@.... (starting with sunil)
     -> Same as: FROM Student s WHERE s.email LIKE 'sunil%'
 
+7. using ORDER BY
+        //order by, default is asc
+        TypedQuery<Student> query = entityManager.createQuery(
+//                "FROM Student ORDER BY lastName", Student.class
+//                "FROM Student ORDER BY lastName DESC", Student.class
+                "FROM Student ORDER BY lastName ASC", Student.class
+        );
+
+8. some more (by passing parameter)
+    //in dao
+    List<Student> findByLastName(String lastName);
+
+    //in dao implementation
+    @Override
+    public List<Student> findByLastName(String lastName) {
+        TypedQuery<Student> student = entityManager.createQuery(
+                "FROM Student WHERE lastName=:lastName", Student.class
+        );
+        student.setParameter("lastName", lastName);
+        return student.getResultList();
+    }
+
+    //in main application
+    findByLastName(studentDAO);
+
+    where,
+        public void findByLastName(StudentDAO studentDAO){
+    		List<Student> studentsList = studentDAO.findByLastName("Adhikari");
+    		for(Student student:studentsList){
+    			System.out.println(student);
+    		}
+    	}
 
