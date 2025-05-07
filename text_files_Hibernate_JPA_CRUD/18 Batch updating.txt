@@ -6,3 +6,4 @@
     //ACTUALLY, executeUpdate() returns number of rows that were updated!
     note: i forgot @Transactional this time as well which led to error during runtime, not during
     compilation, so never forget to use that annotation during modifying of database.
+

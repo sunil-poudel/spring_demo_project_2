@@ -1,0 +1,22 @@
+1. method to interface
+    void delete(int id);
+
+2. implement the method
+    @Override
+    @Transactional
+    public void delete(int id){
+        //find
+        Student student = entityManager.find(Student.class, id);
+        //remove
+        deletedRowsCount = entityManager.remove(student);
+    }
+
+3. Update the main application
+    deleteStudent(studentDAO, id);
+
+    where,
+        public void deleteStudent(StudentDAO studentDAO, int id){
+            System.out.println("Deleting: "+findById(student));
+            studentDAO.delete(id);
+        }
+

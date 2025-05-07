@@ -1,0 +1,9 @@
+1. delete some
+    int deletedRowsCount = entityManager.createQuery(
+        "DELETE FROM Student WHERE lastName='Poudel'"
+    ).executeUpdate();
+
+2. delete all
+    int deletedRowsCount = entityManager.createQuery(
+        "DELETE FROM Student"
+    ).executeUpdate();
