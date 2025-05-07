@@ -35,7 +35,30 @@ public class StudentDAOImpl implements StudentDAO{
 
     @Override
     public List<Student> findAll() {
+        //display all students
         TypedQuery<Student> query = entityManager.createQuery("FROM Student", Student.class);
+
+        //Students whose last name is Poudel
+        //Note that Student and lastName are entity class and fields.
+//        TypedQuery<Student> query = entityManager.createQuery(
+//                "FROM Student WHERE lastName='Poudel'"
+//                ,Student.class
+//        );
+
+        //students whose email ends at @gmail.com
+//        TypedQuery<Student> query = entityManager.createQuery(
+//                "FROM Student WHERE email LIKE '%@gmail.com'"
+//                ,Student.class
+//        );
+
+        //strictly using JPQL (with Select clause)
+//        TypedQuery<Student> query = entityManager.createQuery(
+//                "SELECT s FROM Student s where s.lastName=:theLastName"
+//                ,Student.class
+//        );
+//        String lastName = "Poudel";
+//        query.setParameter("theLastName", lastName);
         return query.getResultList();
     }
+
 }

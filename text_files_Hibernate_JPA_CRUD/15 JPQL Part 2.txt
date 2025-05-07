@@ -1,7 +1,7 @@
 1. Named parameters
     TypedQuery<Student> theQuery = entityManager.createQuery(
-        "FROM Student WHERE lastName=;theLastName", Student.class
-                                     ^ ; is used for using it later (like a placeholder)
+        "FROM Student WHERE lastName=:theLastName", Student.class
+                                     ^ : is used for using it later (like a placeholder)
     );
     String lastName = "Poudel";
     theQuery.setParameter("theLastName", lastName);

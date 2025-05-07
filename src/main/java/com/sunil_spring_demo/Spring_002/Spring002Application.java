@@ -61,10 +61,11 @@ public class Spring002Application {
 		System.out.println(student);
 	}
 
-	private void queryStudents(StudentDAO studentDAO) {
+	public void queryStudents(StudentDAO studentDAO) {
 		List<Student> studentsList = studentDAO.findAll();
 		for(Student student:studentsList){
 			System.out.println(student);
 		}
 	}
+
 }
