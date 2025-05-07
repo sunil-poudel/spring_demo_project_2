@@ -1,0 +1,35 @@
+JPQL is a query language similar to SQL, but it works with JPA entity objects, not directly with tables.
+
+🔹 Basic Syntax
+    SELECT e FROM EntityName e WHERE e.property = :value
+        -> EntityName: the name of the Java class annotated with @Entity
+        -> e: an alias
+        -> :value: named parameter
+
+🔹 Common Queries
+1. Select all
+    SELECT p FROM Product p
+
+2. Where clause
+    SELECT p FROM Product p WHERE p.price > :minPrice
+
+3. Order by
+    SELECT p FROM Product p ORDER BY p.name ASC
+
+4. Join
+    SELECT o FROM Order o JOIN o.customer c WHERE c.name = :name
+
+5. Count
+    SELECT COUNT(p) FROM Product p
+
+6. Update (only in JPQL, not standard JPA)
+    UPDATE Product p SET p.price = :newPrice WHERE p.id = :id
+
+7. Delete
+    DELETE FROM Product p WHERE p.id = :id
+
+🔹 Using in Code
+    TypedQuery<Product> query = em.createQuery(
+        "SELECT p FROM Product p WHERE p.category = :cat", Product.class);
+    query.setParameter("cat", "Books");
+    List<Product> results = query.getResultList();

@@ -1,0 +1,15 @@
+1. We didn't use SELECT in previous .txt files, because
+    Hibernate implementation is lenient (not strict) and
+    allows HQL (Hibernate Query Language)
+
+2. For strict JPA, SELECT clause is required.
+
+3. E.g.
+    TypedQuery<Student> theQuery = entityManager.createQuery(
+        //  SELECT s FROM Student s WHERE s.email LIKE 'sunil%'
+        // SELECT s FROM Student s WHERE s.lastName = ;theLastName
+        // SELECT s FROM Student s
+        , Student.class
+    );
+    where, s is identification variable/alias, used to reference
+    Student entity object, useful for complex queries.

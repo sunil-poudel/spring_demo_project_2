@@ -1,0 +1,39 @@
+1. It is the query language for retrieving the objects.
+
+2. It is similar in concepts like sql,
+    -> where, like, order by, join, in etc.
+    -> However, it is based on entity name and entity fields
+    as opposed to direct table names and table columns.
+
+3. Retrieving all students' name
+    TypedQuery<Student> theQuery = entityManager.createQuery(
+        "FROM Student", Student.class
+        //    ^^name of
+        // JPA Entity class name (not table name)
+    );
+
+    List<Student> studentsList = theQuery.getResultList();
+
+4. Retrieving students' name whose last name is 'Poudel':
+    TypedQuery<Student> theQuery = entityManager.createQuery(
+        "From Student where lastName='Poudel'", Student.class
+        //  ^^entity class  ^^entity field (not column name)
+    );
+
+    List<Student> studentsList = theQuery.getResultList();
+
+5. Other query ways (using OR):
+    "FROM Student WHERE firstName='Sunil' OR lastName='Poudel'"
+
+6. Using LIKE
+    FROM Student WHERE email LIKE '%@gmail.com'
+    -> "Select all Student entities whose email ends exactly with @gmail.com."
+
+    FROM Student WHERE email LIKE '_@gmail.com'
+    -> This matches emails like: a@gmail.com,x@gmail.com
+
+    FROM Student WHERE email LIKE 'sunil%'
+    -> This matches emails like sunil....@.... (starting with sunil)
+    -> Same as: FROM Student s WHERE s.email LIKE 'sunil%'
+
+
