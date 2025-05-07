@@ -1,0 +1,30 @@
+1. In previous txt files, we did crud operations all using sql scripts.
+
+2. We can also do so by using JAVA code directly, with JPA or Hibernate
+annotations.
+
+3. This method is good only for development and testing purposes, not on
+enterprise levels because all data may be lost if not properly done.
+
+4. In application.properties
+    spring.jpa.hibernate.ddl-auto=create
+
+    //it will drop tables and create them on running the application
+    //based on the annotations in Java code
+
+    //we created entity student with table name, rows, columns, getters, setters, constructors
+
+    //when tables are dropped, all the database is lost.
+
+5. spring.jpa.hibernate.ddl-auto=PROPERTY_VALUE
+   Property Value -->	Property Description
+   __________________________________________
+   none -->	No action will be performed
+   create-only -->	Database tables are only created
+   drop -->	Database tables are dropped
+   create -->	Database tables are dropped followed by database tables creation
+   create-drop -->	Database tables are dropped followed by database tables creation. On application shutdown, drop the database tables
+   validate -->	Validate the database tables schema
+   update -->	Update the database tables schema
+
+
