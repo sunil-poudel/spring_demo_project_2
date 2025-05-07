@@ -20,7 +20,7 @@ public class Spring002Application {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
 //			createStudent(studentDAO);
-//			createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 //			readStudent(studentDAO, 1);
 //			readStudent(studentDAO, 2);
 //			readStudent(studentDAO, 3);

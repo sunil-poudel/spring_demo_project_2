@@ -1,0 +1,52 @@
+        ~~~~~ Configuration ~~~~~
+1. To see what's happening behind the scenes, we create property for
+being able to see log in console regarding so.
+
+2. To do that: (application.properties)
+    #Add logging config to display sql statements
+    logging.level.org.hibernate.SQL=debug
+    logging.level.org.hibernate.orm.jdbc.bind=trace
+
+3. To add config to auto create table (application.properties)
+    #config to auto create table by dropping previous
+    spring.jpa.hibernate.ddl-auto=create
+
+4. Just do same as what we did on previous method,
+run the function to see the log.
+
+5. For example:
+	createMultipleStudents(studentDAO);
+
+    where,
+        public void createMultipleStudents(StudentDAO studentDAO){
+            //creating student objects
+            Student std1 = new Student("shyam", "poudel", "spd@gmail.com");
+            Student std2 = new Student("ram", "adhikari", "radk@gmail.com");
+            Student std3 = new Student("sita", "tiwari", "sta@gmail.com");
+
+            //saving students
+            studentDAO.save(std1);
+            studentDAO.save(std2);
+            studentDAO.save(std3);
+        }
+
+6. In above specific example, the log looks like this:
+        org.hibernate.SQL                        : drop table if exists student
+        org.hibernate.SQL                        : create table student (id integer not null auto_increment, email varchar(255), first_name varchar(255), last_name varchar(255), primary key (id)) engine=InnoDB
+        org.hibernate.SQL                        : insert into student (email,first_name,last_name) values (?,?,?)
+        org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [spd@gmail.com]
+        org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [shyam]
+        org.hibernate.orm.jdbc.bind              : binding parameter (3:VARCHAR) <- [poudel]
+        org.hibernate.SQL                        : insert into student (email,first_name,last_name) values (?,?,?)
+        org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [radk@gmail.com]
+        org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [ram]
+        org.hibernate.orm.jdbc.bind              : binding parameter (3:VARCHAR) <- [adhikari]
+        org.hibernate.SQL                        : insert into student (email,first_name,last_name) values (?,?,?)
+        org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [sta@gmail.com]
+        org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [sita]
+        org.hibernate.orm.jdbc.bind              : binding parameter (3:VARCHAR) <- [tiwari]
+
+7. We see that every time we run the application, it drops table before creating.
+So previous data is lost in this config every time.
+
+

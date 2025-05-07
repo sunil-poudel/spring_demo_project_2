@@ -1,0 +1,2 @@
+1.      #config to auto create table without dropping previous
+        spring.jpa.hibernate.ddl-auto=update
