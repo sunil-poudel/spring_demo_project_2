@@ -32,7 +32,11 @@ public class Spring002Application {
 
 //			updateStudent(studentDAO, 3);
 
-			updateAllStudents(studentDAO);
+//			updateAllStudents(studentDAO);
+
+//			deleteStudent(studentDAO,2);
+
+//			deleteConditional(studentDAO);
 		};
 	}
 
@@ -103,6 +107,22 @@ public class Spring002Application {
 		System.out.println("Updated successfully! "+n+" row(s)!!");
 
 		queryStudents(studentDAO);
+	}
+
+	public void deleteStudent(StudentDAO studentDAO, int id){
+		System.out.println("deleting: ");
+		readStudent(studentDAO, id);
+
+		//delete
+		studentDAO.delete(id);
+
+		System.out.println("Deleted successfully!");
+	}
+
+	public void deleteConditional(StudentDAO studentDAO){
+		int n = studentDAO.conditionalDelete();
+
+		System.out.println("deleted "+n+" row(s)");
 	}
 
 

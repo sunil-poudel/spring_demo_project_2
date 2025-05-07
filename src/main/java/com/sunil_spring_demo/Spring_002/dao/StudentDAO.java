@@ -22,4 +22,10 @@ public interface StudentDAO {
 
     //updating entire table (entity)
     int updateAll();
+
+    //delete a table
+    void delete(int id);
+
+    //conditional delete
+    int conditionalDelete();
 }
